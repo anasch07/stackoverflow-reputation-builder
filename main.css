@@ -40,6 +40,14 @@
 	margin: 0 auto 1em auto;
 }
 
+.answerer {
+	overflow: auto;
+}
+
+.answerer .profile-img {
+	margin-right: 20px;
+}
+
 .error {
 	background-color: #F78181;
 	padding: 1em;
