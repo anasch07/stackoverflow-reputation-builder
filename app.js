@@ -40,11 +40,7 @@ var showQuestion = function(question) {
 	// set some properties related to asker
 	var asker = result.find('.asker');
 	asker.html('<p>Name: <a target="_blank" href=http://stackoverflow.com/users/' + question.owner.user_id + ' >' +
-													question.owner.display_name +
-												'</a>' +
-							'</p>' +
- 							'<p>Reputation: ' + question.owner.reputation + '</p>'
-	);
+			question.owner.display_name + '</a>' + '</p>' +'<p>Reputation: ' + question.owner.reputation + '</p>');
 
 	return result;
 };
@@ -58,22 +54,6 @@ var showAnswerer = function(answerer){
 	var result = $('.templates .answerer').clone();
 	
 	var user = answerer.user;
-	
-	/*
-	// Set the answerer properties in result
-	var user = result.find('.answerer');
-	user.html("<a target='_blank' href='"+ answerer.user.link +"'>" +
-			  "<img src='" + answerer.user.profile_image + "' alt='" + answerer.user.display_name + " profile image'><br>" + 
-			  answerer.user.display_name + "</a>");
-	
-	// Set the answerer's reputation in result
-	var reputation = result.find(".reputation");
-	reputation.text(answerer.user.reputation);
-	
-	// Set the answerer's post count in result
-	var postCount = result.find(".post-count");
-	postCount.text(answerer.post_count);
-	*/
 	
 	// Set image link
 	var imgLink = result.find(".profile-img-link");
@@ -117,17 +97,19 @@ var showError = function(error){
 var getUnanswered = function(tags) {
 	
 	// the parameters we need to pass in our request to StackOverflow's API
-	var request = {tagged: tags,
-								site: 'stackoverflow',
-								order: 'desc',
-								sort: 'creation'};
+	var request = { 
+		tagged: tags,
+		site: 'stackoverflow',
+		order: 'desc',
+		sort: 'creation' 
+	};
 	
 	var result = $.ajax({
 		url: "http://api.stackexchange.com/2.2/questions/unanswered",
 		data: request,
 		dataType: "jsonp",
 		type: "GET",
-		})
+	})
 	.done(function(result){
 		// Note how this has access to the request object. 
 		// Therefore it can access what tags we searched for.
@@ -149,8 +131,8 @@ var getUnanswered = function(tags) {
 //for on StackOverflow
 var getTopAnswerers = function(tag) {
 	var request = {
-					tag: tag,
-			        site: 'stackoverflow'
+		tag: tag,
+		site: 'stackoverflow'
 	};
 	
 	var result = $.ajax({
@@ -171,9 +153,5 @@ var getTopAnswerers = function(tag) {
 	.fail(function(jqXHR, error, errorThrown){
 		var errorElem = showError(error);
 		$('.search-results').append(errorElem);
-	});
-	
+	});	
 };
-
-
-
