@@ -4,6 +4,7 @@ $(document).ready( function() {
 		$('.results').html('');
 		// get the value of the tags the user submitted
 		var tags = $(this).find("input[name='tags']").val();
+		$(this).find("input[name='tags']").val("");
 		getUnanswered(tags);
 	});
 	
@@ -12,6 +13,7 @@ $(document).ready( function() {
 		$('.results').html('');
 		// get the value of the tag the user submitted
 		var tag = $(this).find("input[name='answerers']").val();
+		$(this).find("input[name='answerers']").val("");
 		getTopAnswerers(tag);
 	});
 });
